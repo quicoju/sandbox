@@ -75,7 +75,7 @@
   (create-player iw (symbol->string (gensym (iworld-name iw)))))
 
 (define (create-player iw n)
-  (ip iw (create-a-body PLAYER-SIZE) empty))
+  (ip iw n (create-a-body PLAYER-SIZE) empty))
 
 (define (create-a-body size)
   (define x (+ size (random (- WIDTH size))))
@@ -125,7 +125,7 @@
   (make-bundle p mails empty))
 
 (define (get-iws p)
-  (map ip-iw (append (play-players) (play-spectators p))))
+  (map ip-iw (append (play-players p) (play-spectators p))))
 
 (define (serialize-universe p)
   (define serialized-players (map ip-player (play-players p)))
@@ -168,7 +168,7 @@
 (define (play-remove p iw)
   (define players (play-players p))
   (define spectators (play-spectators p))
-  (play (rip iw players) (play-food) (rip iw spectators)))
+  (play (rip iw players) (play-food p) (rip iw spectators)))
 
 (define (move-and-eat pu)
   (define nplayer (move-player* (play-players pu)))

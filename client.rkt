@@ -64,7 +64,7 @@
         [(entree? meal) (handle-entree-message meal msg)]))
 
 (define (set-waypoint meal x y me)
-  (if (and (entree? meal (mouse=? me "button-down")))
+  (if (and (entree? meal) (mouse=? me "button-down"))
       (make-package meal (list GOTO x y))
       meal))
 
@@ -72,6 +72,9 @@
   (add-progress-bar (render-id+image app) (app-countdown app)))
 
 (define (add-progress-bar base count)
+  (place-image (render-progress count) (/ WIDTH 2) PBAR-LOC base))
+
+(define (render-progress count)
   (overlay PBAR-TEXT (rectangle (* count WIDTH) PBAR-HEIGHT "solid" PBAR-COLOR)))
 
 (define (render-id+image app)
