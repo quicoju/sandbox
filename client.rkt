@@ -1,5 +1,7 @@
 #lang racket
 
+(provide lets-eat)
+
 (require 2htdp/universe 2htdp/image "shared.rkt")
 
 ;; Constants
