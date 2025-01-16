@@ -241,3 +241,4 @@
 (define (refresh players)
   (for/list ([p players])
     (create-player (ip-iw p) (ip-id p))))
+
